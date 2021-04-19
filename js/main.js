@@ -102,7 +102,7 @@ const icons = [
 Partendo dalla seguente struttura dati (allegata sotto) , mostriamo in pagina tutte le icone disponibili
 */
 
-// const place = document.querySelector('.icons');
+const place = document.querySelector('.icons');
 // printIcons(icons, place);
 
 
@@ -110,21 +110,44 @@ Partendo dalla seguente struttura dati (allegata sotto) , mostriamo in pagina tu
 
 const colors = ['#00b7ff', '#b572e2', '#af831a'];
 
-let typeIcons = typeFunction(icons); 
-
-
+const typeIcons = typeFunction(icons); 
 
 console.log(typeIcons);
 
+const colorIcons = printColorIcons(icons, typeIcons);
 
 
 
+ console.table(colorIcons);
+
+ printIcons(colorIcons, place);
 // {
 //     name: 'cat',
 //     prefix: 'fa-',
 //     type: 'animal',
 //     family: 'fas',
 // },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -137,19 +160,19 @@ function printIcons(array, posizione){
 
     let html = '';
 
-    icons.forEach((icon) => {
+    array.forEach((icon) => {
 
-        const{name, prefix, type, family} = icon;
+        const{name, prefix, family, color} = icon;
 
         html += `
         <div class="icon">
-            <i class="${family} ${prefix}${name}"></i>
+            <i class="${family} ${prefix}${name}"  style="color: ${color}"></i>
             <div class="title">${name}</div>
         </div>`;
     });
 
 console.log(html);
-place.innerHTML = html;
+posizione.innerHTML = html;
 
 
 };
@@ -161,7 +184,7 @@ function typeFunction(array){
 
     const typeIcons = [];
 
-    icons.forEach((icon) =>{
+    array.forEach((icon) =>{
 
         if(!typeIcons.includes(icon.type)){
             typeIcons.push(icon.type);
@@ -171,4 +194,20 @@ function typeFunction(array){
 
     return typeIcons;
 
+};
+
+// FUNZIONE PER CREARE UN NUOVO ARRAY CON L'AGGIUNTA DEL COLOR
+
+function printColorIcons(array, arrayType){
+
+    const colorIcons = array.map((icon)   => {
+        const indexType = arrayType.indexOf(icon.type);
+        return {
+                ...icon,
+                color: colors[indexType]
+                }
+    
+     });
+
+     return colorIcons;
 };
