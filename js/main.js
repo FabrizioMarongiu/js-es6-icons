@@ -112,37 +112,32 @@ const colors = ['#00b7ff', '#b572e2', '#af831a'];
 
 const typeIcons = typeFunction(icons); 
 
-console.log(typeIcons);
+// console.log(typeIcons);
 
 const colorIcons = printColorIcons(icons, typeIcons);
 
 
 
- console.table(colorIcons);
+//  console.table(colorIcons);
 
  printIcons(colorIcons, place);
-// {
-//     name: 'cat',
-//     prefix: 'fa-',
-//     type: 'animal',
-//     family: 'fas',
-// },
 
+ //Creiamo una select con i tipi di icone e usiamola per filtrare le icone
+// Dichiarazioni
 
+const select = document.querySelector('#type');
+options(select, typeIcons);
 
+select.addEventListener('change', () =>{
 
+    const selected = select.value;
 
+    const selectedArray = selection(colorIcons, selected);
 
+    printIcons(selectedArray, place);
 
-
-
-
-
-
-
-
-
-
+    
+});
 
 
 
@@ -171,7 +166,7 @@ function printIcons(array, posizione){
         </div>`;
     });
 
-console.log(html);
+// console.log(html);
 posizione.innerHTML = html;
 
 
@@ -210,4 +205,31 @@ function printColorIcons(array, arrayType){
      });
 
      return colorIcons;
+};
+
+
+// funzione per popolare la selection nel DOM
+function options (select, typeIcons){
+
+    let options = '';
+    typeIcons.forEach((type) => {
+
+        options += `<option value="${type}">${type}</option>`;
+    });
+    select.innerHTML += options;
+};
+
+// FUNZIONE PER STAMPARE LA SELEZIONE
+function selection(array, selected){
+
+    if(selected === 'all'){
+          return array;
+     };
+
+    const filtered = array.filter((icon) => {
+
+        return selected === icon.type;
+    });
+
+    return filtered;
 };
