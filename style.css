@@ -1,0 +1,61 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* UTILITies */
+.p20px{
+    padding: 20px;
+}
+/* LAYOUT */
+/* HEADER */
+.app{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #232946;
+}
+
+.header{
+text-align: center;
+color:#eebbc3
+}
+
+.header span{
+    color:#fffffe
+}
+
+/* MAIN */
+.main{
+    flex-grow: 1;
+    background-color: #b8c1ec;
+    display: flex;
+    flex-direction: column;
+}
+
+.search{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search select{
+    width: 200px;
+    margin: 0 20px;
+}
+
+.icons{
+    flex-grow: 1 ;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.icon{
+    flex-basis: calc( 100% / 4 - 20px);
+    text-align: center;
+    margin:20px 10px;
+    background: #eebbc3;
+    padding: 10px 0;
+    border-radius:50%;
+}
